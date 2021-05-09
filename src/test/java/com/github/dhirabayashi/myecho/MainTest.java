@@ -20,4 +20,14 @@ class MainTest {
         assertEquals("aaa bbb", Main.join("aaa", "bbb"));
     }
 
+    @Test
+    void envVar() {
+        var expected = System.getenv("PATH");
+        assertEquals(expected, Main.join("$PATH"));
+    }
+
+    @Test
+    void escapedDollar() {
+        assertEquals("$PATH", Main.join("\\$PATH"));
+    }
 }
